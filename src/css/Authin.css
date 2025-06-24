@@ -1,0 +1,808 @@
+.full-page-auth{
+ background-image: linear-gradient(to right,#fffde7,#fff9c4,#fff59d);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.loader-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.error-message {
+  background: #ffebee;
+  color: #b71c1c;
+  padding: 12px;
+  border-radius: 4px;
+  margin: 15px 0;
+  border: 1px solid #ffcdd2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* log in start here */
+.log-in {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  min-height: 600px;
+  background-color: #fffde7;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.51);
+  margin: 2rem auto;
+  display: flex;
+  overflow: hidden;
+}
+
+
+.log-in .side-left {
+    width: 100%;
+    background-color: #ffee58;
+    border-radius: inherit;
+    border-bottom-right-radius:80px ;
+    border-top-right-radius:80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+    flex: 1 1 40%;
+    overflow: hidden; 
+
+}
+  
+
+.log-in .side-left .links{
+    text-decoration: none;
+    background-color: transparent;
+    border: 2px solid black;
+    color: black;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 1.1em;
+    border-radius: 10px;
+}
+.log-in .side-left .links:active{
+  background-color: #fff9c4;
+}
+.log-in .side-right {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 60%;
+}
+
+.log-in .side-right .input-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 1rem auto;
+}
+
+.log-in .side-right .input-container input {
+    font-size: 1.2rem;
+    height: 50px;
+    width: 100%;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 13px 40px 13px 20px;
+    border: 2px solid transparent;
+    background-color: #fff9c4;
+    caret-color: black;
+    transition: all 0.3s ease;
+}
+.log-in .side-right .input-container input:focus{
+  border-color:rgb(5, 0, 0) ;
+  outline: none;
+}
+
+.log-in .side-right .input-container .material-icons {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgb(114, 119, 123);
+    cursor: pointer;
+}
+
+.log-in .side-right button {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    background-color: #ffee58;
+    border-radius:10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.log-in .side-right button:hover{
+    background-color: hsl(54, 100%, 57%);
+}
+.log-in .side-right button:active{
+    background-color: hsl(54, 100%, 47%);
+}
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slideUpFadeIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+
+.log-in .side-left > * {
+  opacity: 0;
+  animation: slideUpFadeIn 0.5s ease-out forwards;
+  will-change: transform, opacity;
+}
+
+
+.log-in .side-left h1:nth-child(1) {
+  animation-delay: 0.3s;
+}
+
+.log-in .side-left .links:nth-child(2) {
+  animation-delay: 0.6s;
+}
+.log-in .side-right {
+  overflow: hidden;
+}
+
+
+.log-in .side-right h1,
+.log-in .side-right .input-container,
+.log-in .side-right button {
+  opacity: 0;
+  animation: slideUpFadeIn 0.5s ease-out forwards;
+  will-change: transform, opacity;
+}
+
+
+.log-in .side-right h1 {
+  animation-delay: 0.3s;
+}
+
+.log-in .side-right .input-container:nth-child(1) {
+  animation-delay: 0.6s;
+}
+
+.log-in .side-right .input-container:nth-child(2) {
+  animation-delay: 0.9s;
+}
+
+.log-in .side-right button {
+  animation-delay: 1.2s;
+}
+
+
+.log-in .side-left {
+
+  animation: slideIn 0.6s ease-out;
+  transform: translateX(0); 
+}
+
+@media (max-width: 768px) {
+    .log-in {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .log-in .side-left {
+        border-radius: 20px 20px 0 0;
+        padding: 1.5rem;
+    }
+
+    .log-in .side-left h1 {
+        font-size: 2rem;
+        margin: 1rem 0;
+    }
+
+    .log-in .side-right {
+        padding: 1.5rem;
+    }
+
+    .log-in .side-right h1 {
+        font-size: 1.8rem;
+    }
+
+   .log-in .input-container {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .log-in {
+        width: 95%;
+        border-radius: 15px;
+    }
+
+    .log-in .side-left h1 {
+        font-size: 1.8rem;
+    }
+
+    .log-in .side-right input {
+        font-size: 1rem;
+        height: 45px;
+        padding: 10px 35px 10px 15px;
+    }
+
+    .log-in .material-icons {
+        font-size: 20px;
+    }
+
+    .log-in .side-right button {
+        font-size: 1rem;
+        padding: 12px;
+    }
+}
+/* log in end here reset passsword start    /////////////////////////////////////////////////////////////////////////////*/
+
+.reset-password ,.verfyemail {
+    width: 90%;
+    max-width: 800px;
+    min-height: 500px;
+    background-color: #ffee58;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.51);
+    margin: 2rem auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .reset-password .h-text {
+    text-align: center;
+    margin: 2rem 0;
+  }
+  
+  .reset-password .h-text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .reset-password .h-text h3 {
+    font-size: 1.2rem;
+    color: #86857c;
+  }
+  
+  .reset-password .input-container {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    margin: 2rem 0;
+  }
+  
+  .reset-password .input-container input {
+    width: 100%;
+    height: 50px;
+    padding: 13px 40px 13px 20px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-color: #fff9c4;
+    font-size: 1.2rem;
+    caret-color: black;
+    transition: all 0.3s ease;
+  }
+  .reset-password .input-container input:focus {
+    border-color: black;
+    outline: none;
+  }
+  
+  .reset-password .input-container .material-icons {
+    position: absolute;
+    right: 15px;
+    top: 17%;
+    transform: translateY(-50%);
+    color: rgb(114, 119, 123);
+  }
+  
+  .reset-password .btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+  }
+  
+  .reset-password .btn button {
+    width: 90%;
+    max-width: 400px;
+    padding: 15px;
+    font-size: 1.2rem;
+    background-color: transparent;
+    border: 3px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 1rem 0;
+    transition: all 0.3s ease;
+  }
+  
+  .reset-password .btn .links {
+ 
+    font-size: 1rem;
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all ease 0.3s;
+    margin-bottom: 30px;
+  }
+  .reset-password form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    
+  }
+  .reset-password form .btn,.reset-password .loading-state{
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 1.3rem;
+    margin-top: 50px;
+
+  }
+  .reset-password .btn .links:active {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  .reset-password .btn button:active{
+    background-color: #fff9c4;
+  }
+  @keyframes expandFromBottom {
+    from {
+      transform: translateY(100%) scaleY(0);
+      opacity: 0;
+      border-radius: 20px; 
+    }
+    to {
+      transform: translateY(0) scaleY(1);
+      opacity: 1;
+      border-radius: 20px; 
+    }
+  }
+
+  
+  .reset-password ,.verfyemail{
+    animation: expandFromBottom 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    transform-origin: right center;
+    overflow: hidden;
+    will-change: transform;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .reset-password {
+      min-height: auto;
+      padding: 1.5rem;
+    }
+  
+    .reset-password .h-text h1 {
+      font-size: 2rem;
+    }
+  
+    .reset-password .h-text h3 {
+      font-size: 1rem;
+    }
+  
+    .reset-password .input-container {
+      margin: 1.5rem 0;
+    }
+  
+    .reset-password .btn button {
+      padding: 12px;
+      font-size: 1.1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .reset-password {
+      width: 95%;
+      padding: 1rem;
+    }
+  
+    .reset-password .h-text h1 {
+      font-size: 1.8rem;
+    }
+  
+    .reset-password .input-container input {
+      height: 45px;
+      font-size: 1rem;
+      padding: 10px 35px 10px 15px;
+    }
+  
+    .reset-password .material-icons {
+      font-size: 20px;
+    }
+  
+    .reset-password .btn button {
+      font-size: 1rem;
+    }
+  }
+
+/* the end of reset password and the start of new password /////////////////////////////////////////// */
+
+
+.new-password {
+  width: 90%;
+  max-width: 800px;
+  min-height: 500px;
+  background-color: #ffee58;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.51);
+  margin: 2rem auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-password .form-box {
+  width: 100%;
+  max-width: 600px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+}
+
+.new-password .link{
+  text-align: center;
+}
+.new-password .checkbox input{
+  margin-right: 5px;
+  
+}
+.new-password .form-box h1 {
+  font-size: 1.8rem;
+  margin: 1.5rem 0;
+  color: black;
+}
+
+.new-password .form-box .input-container {
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  margin: 1.5rem auto;
+}
+
+.new-password .form-box .input-container input {
+  width: 100%;
+  height: 50px;
+  padding: 10px 40px 10px 20px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background-color: #fff9c4;
+  font-size: 1.2rem;
+  caret-color: black;
+  transition: all 0.3s ease;
+}
+
+.new-password .form-box .input-container input:focus {
+  border-color: black;
+  outline: none;
+}
+
+.new-password .form-box .input-container .material-icons {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #7d7f75;
+}
+
+.new-password .form-box .btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.new-password .form-box .btn button {
+  width: 90%;
+  max-width: 400px;
+  padding: 15px;
+  font-size: 1.2rem;
+  background-color: transparent;
+  border: 3px solid black;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 1rem 0;
+  transition: all 0.3s ease;
+}
+
+
+.new-password .form-box .btn button:active {
+  background-color: #fff9c4;
+}
+
+.new-password   .links {
+  margin-top: 1rem;
+  font-size: 1rem;
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  transition: all ease 0.3s;
+  text-align: center;
+}
+.new-password  .links:active {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.new-password {
+  animation: expandFromBottom 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  transform-origin: right center;
+  overflow: hidden;
+  will-change: transform;
+}
+
+@media (max-width: 768px) {
+  .new-password {
+    min-height: auto;
+    padding: 1.5rem;
+  }
+
+  .new-password .form-box h1 {
+    font-size: 1.6rem;
+    margin: 1rem 0;
+  }
+
+  .new-password .form-box .input-container .input-container {
+    width: 100%;
+  }
+
+  .new-password .form-box .btn button {
+    font-size: 1.1rem;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .new-password {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  .new-password .form-box h1 {
+    font-size: 1.4rem;
+  }
+
+  .new-password .form-box .input-container .input-container input {
+    height: 45px;
+    font-size: 1rem;
+    padding: 10px 35px 10px 15px;
+  }
+
+  .new-password .form-box .input-container .material-icons {
+    font-size: 20px;
+    right: 10px;
+  }
+
+  .new-password .form-box .btn button {
+    font-size: 1rem;
+  }
+
+  .new-password   .links {
+    font-size: 0.9rem;
+  }
+}
+/* here the end of new password and the start of verfyemial start ///////////////////////////////////////////////////////////////////// */
+
+.verfyemail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+
+.verfyemail .image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.verfyemail .image img {
+  width: 100%;
+  max-width: 250px;
+}
+
+
+.verfyemail .links {
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  margin: 10px;
+  transition: background 0.3s ease;
+}
+
+.verfyemail .links:active {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+
+.verfyemail .formContainer {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.verfyemail .formContainer form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.verfyemail form button {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2rem;
+  background-color: transparent;
+  border: 3px solid black;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 1rem 0;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.verfyemail form .loader-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.verfyemail form .spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.verfyemail form .error-message {
+  background: #ffebee;
+  color: #b71c1c;
+  padding: 12px;
+  border-radius: 4px;
+  margin: 15px 0;
+  border: 1px solid #ffcdd2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+.verfyemail .OTP {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.verfyemail .otp-input {
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+  text-align: center;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  transition: border 0.1s linear;
+}
+
+.verfyemail .otp-input:hover {
+  box-shadow: 0 0 5px #333;
+}
+
+.verfyemail .otp-input:focus {
+  border: 3px solid black;
+  box-shadow: 0 0 5px #333;
+  caret-color: black;
+}
+
+
+@media (max-width: 768px) {
+  .verfyemail .otp-input {
+    width: 45px;
+    height: 45px;
+    font-size: 1rem;
+  }
+
+  .verfyemail .formContainer {
+    max-width: 90%;
+  }
+
+  .verfyemail .image img {
+    width: 70%;
+  }
+}
+
+@media (max-width: 480px) {
+  .verfyemail .otp-input {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .verfyemail .formContainer {
+    max-width: 100%;
+  }
+
+  .verfyemail .formContainer form {
+    align-items: stretch;
+  }
+
+  .verfyemail form button {
+    font-size: 1rem;
+    padding: 12px;
+  }
+
+  .verfyemail .image img {
+    width: 90%;
+  }
+}
