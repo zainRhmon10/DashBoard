@@ -27,6 +27,8 @@ export const EditDialog = ({ onClose, open, onconfirm }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  
+
   const handleOptionChange = (index, field, value) => {
     const updatedOptions = [...formData.options];
     updatedOptions[index] = {

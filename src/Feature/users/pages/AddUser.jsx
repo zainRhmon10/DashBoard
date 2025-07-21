@@ -10,12 +10,12 @@ import {
 } from '@mui/material';
 import { MenuItem } from '@mui/material';
 import axios from 'axios';
-import { AuthContext } from '../../context/AuthContext';
 import {  useContext } from 'react';
-import { createUser } from '../../services/user';
 
-import image from "../../assets/images/Leaf_01.png";
+import image from "../../../assets/images/Leaf_01.png";
 import { useTheme } from '@emotion/react';
+import { AuthContext } from '../../../context/AuthContext';
+import { createUser } from '../services/user';
 
 
 

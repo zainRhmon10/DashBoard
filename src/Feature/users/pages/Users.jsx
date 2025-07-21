@@ -21,12 +21,12 @@ import {
   DialogContent,
   DialogActions,
 } from "@mui/material";
-import { AuthContext } from "../../context/AuthContext";
-import { ChangeStatus, DeleteUser, fetchUsers } from "../../services/user";
+import { ChangeStatus, DeleteUser, fetchUsers } from "../services/user";
 import { useNavigate } from "react-router-dom";
 import { ArrowDropDown, ManageAccounts, Search } from "@mui/icons-material";
-import { DeleteDialog } from "../../components/User/user_table";
+import { DeleteDialog } from "../component/user_table";
 import { debounce } from "lodash";
+import { AuthContext } from "../../../context/AuthContext";
 
 const UserCell = React.memo(({ name }) => (
   <Box>

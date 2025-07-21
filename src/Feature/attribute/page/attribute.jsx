@@ -1,21 +1,19 @@
 import { Box, CircularProgress, Paper, Typography } from "@mui/material";
-import React, { useContext, useState } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import React, { useCallback, useContext, useState } from "react";
+import { AuthContext } from "../../../context/AuthContext";
 import { PostAdd, WorkOutlineOutlined } from "@mui/icons-material";
 import {
   DeleteAttribute,
   editAttribute,
   getAllAtributte,
-} from "../../services/attribute";
-import {
-  getColumnsAttribute,
-  useAttributes,
-} from "../../components/Atrribute-component/attribute-collection";
+} from "../services/attribute";
+
 import { DataGrid } from "@mui/x-data-grid";
 import { Navigate, useNavigate } from "react-router-dom";
-import { DeleteDialogAttribute } from "../../components/Atrribute-component/Delete-attribute";
-import { EditDialog } from "../../components/Atrribute-component/edit-attribute";
-
+import { DeleteDialogAttribute } from "../component/Delete-attribute";
+import { EditDialog } from "../component/edit-attribute";
+import { useAttributes } from "../hook/attribute";
+import { getColumnsAttribute } from "../component/attribute-collection";
 const Attribute = () => {
   const { token } = useContext(AuthContext);
   const { rows, loading, deleteLocal,refresh } = useAttributes(token);
@@ -28,22 +26,23 @@ const Attribute = () => {
   const [selectedRow, setSelectedRow] = useState(null);
 
   const [loadingDelete, setLoadingDelete] = useState(false);
-  const [loadingEdit, setLoadingEdit] = useState(false);
+  const [loadingEdit,setLoadingEdit] = useState(false);
 
-  const handleEditClick = (row) => {
-    setSelectedRow(row);
-    setOpenDialog(true);
-  };
+  const handleEditClick = useCallback((row) => {
+  setSelectedRow(row);
+  setOpenDialog(true);
+}, []);
+
 
   const handleDialogClose = () => {
     setOpenDialog(false);
     setSelectedRow(null);
   };
 
-  const handleDeleteClick = (id) => {
-    setDeleteId(id);
-    setopenDialogDelete(true);
-  };
+  const handleDeleteClick = useCallback((id) => {
+  setDeleteId(id);
+  setopenDialogDelete(true);
+}, []);
 
   const handleDeleteConfirm = async () => {
     try {
@@ -62,33 +61,38 @@ const Attribute = () => {
   };
 
   const handleDialogSave = async (formData) => {
-    const form = new FormData();
-    form.append("name[en]", formData.nameEN);
-    form.append("name[ar]", formData.nameAR);
-    form.append("type", formData.type);
+  const form = new FormData();
+  form.append("name[en]", formData.nameEN);
+  form.append("name[ar]", formData.nameAR);
+  form.append("type", formData.type);
 
-    // إضافة الخيارات إذا وُجدت
-    formData.options.forEach((option, index) => {
-      form.append(`options[${index}][en]`, option.en);
-      form.append(`options[${index}][ar]`, option.ar);
-    });
-
-    try {
-      setLoadingEdit(true);
-      await editAttribute(token, selectedRow.id, form);
-      handleDialogClose();
-      await refresh();
-    } catch (error) {
-      console.error("Failed to update attribute:", error);
-    } finally {
-      setLoadingEdit(false);
-    }
-  };
-
-  const columns = getColumnsAttribute({
-    onEditClick: handleEditClick,
-    onDeleteClick: handleDeleteClick,
+  formData.options.forEach((option, index) => {
+    form.append(`options[${index}][en]`, option.en);
+    form.append(`options[${index}][ar]`, option.ar);
   });
+
+  try {
+    console.log("FormData to be sent:", [...form.entries()]);
+    setLoadingEdit(true);
+    await editAttribute(token, selectedRow.id, form);
+    handleDialogClose();
+    await refresh();
+  } catch (error) {
+    console.error("Failed to update attribute:", error);
+  } finally {
+    setLoadingEdit(false);
+  }
+};
+
+
+  const columns = React.useMemo(
+  () =>
+    getColumnsAttribute({
+      onEditClick: handleEditClick,
+      onDeleteClick: handleDeleteClick,
+    }),
+  [handleEditClick, handleDeleteClick]
+);
 
   return (
     <Box
@@ -187,7 +191,7 @@ const Attribute = () => {
           onconfirm={handleDialogSave}
         />
      
-        <DeleteDialogAttribute
+        <DeleteDialogAttribute   
           open={openDialogDelete}
           onclose={() => setopenDialogDelete(false)}
           onconfirm={handleDeleteConfirm}

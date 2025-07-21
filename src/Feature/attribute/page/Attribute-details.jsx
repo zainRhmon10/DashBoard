@@ -9,9 +9,9 @@ import {
   CardMedia,
   Divider,
 } from '@mui/material';
-import { AuthContext } from '../../context/AuthContext';
-import { getAttribute } from '../../services/attribute';
-import image from "../../assets/images/image3.png.png";
+import { getAttribute } from '../services/attribute';
+import image from "../../../assets/images/image3.png.png";
+import { AuthContext } from '../../../context/AuthContext';
 
 const AttributeDetails = () => {
   const { id } = useParams();
@@ -52,9 +52,9 @@ const AttributeDetails = () => {
   Learn more about this food customization option and its values.
 </Typography>
 
-      <Grid container spacing={0} justifyContent="center" alignItems="center" position="relative">
+      <Grid container spacing={0} justifyContent="center" alignItems="center" position="relative" wrap='nowrap'>
   {/* الصورة على اليسار وتتداخل فوق الورقة */}
-  <Grid item xs={12} md={4} sx={{ zIndex: 2, position: 'relative' }}>
+  <Grid item xs={12} md={4} sx={{ zIndex: 2, position: 'relative' }} wrap="nowrap">
     <CardMedia
       component="img"
       image={image}

@@ -22,6 +22,9 @@ import {
   ExpandMore,
   ChevronRight,
   PostAdd,
+  RestaurantMenu,
+  LocalOffer,
+  DeliveryDining,
 
 } from "@mui/icons-material";
 import ControlPointOutlinedIcon from '@mui/icons-material/ControlPointOutlined';
@@ -63,12 +66,36 @@ const menuItems = [
         { text: "Add Role", path: "/add-role", icon: <ControlPointOutlinedIcon /> }
       ]
     },
+    {
+      title: "Category",
+      icon: <RestaurantMenu />,
+      subItems: [
+        { text: "Category", path: "/category", icon: <RestaurantMenu /> },
+        { text: "Add Category", path: "/add-category", icon: <ControlPointOutlinedIcon /> }
+      ]
+    },
+     {
+      title: "Tags",
+      icon: <LocalOffer />,
+      subItems: [
+        { text: "Tags", path: "/tags", icon: <LocalOffer/> },
+        { text: "Add Tag", path: "/add-tags", icon: <ControlPointOutlinedIcon /> }
+      ]
+    },
      {
       title: "Attribute",
       icon: <PostAdd />,
       subItems: [
         { text: "Collection", path: "/attribute", icon: <PostAdd /> },
         { text: "Add Attribute", path: "/add-attribute", icon: <ControlPointOutlinedIcon /> }
+      ]
+    },
+    {
+      title: "Delivery Zone",
+      icon: <DeliveryDining />,
+      subItems: [
+        { text: "Zones", path: "/zones", icon: <DeliveryDining /> },
+        { text: "Add Zone", path: "/add-zone", icon: <ControlPointOutlinedIcon /> }
       ]
     },
     {

@@ -43,16 +43,24 @@ export const getAttribute = async (token , id) => {
 
 
 export const editAttribute = async (token ,id ,data) =>{
-    const response = await axios.post(`${BASE_URL}/attributes/${id}`,
+    try{
+      const response = await axios.post(`${BASE_URL}/attributes/${id}`,
         data,
          {headers : {
             Accept: 'application/json',
-          Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
 
         }}
     );
-
     return response.data ;
+
+    }
+    catch (e) {
+        console.error("Edit Category Error:", e.response?.data || e.message);
+        alert(`Error: ${e.response?.data?.message || e.message}`);
+        throw e;
+    }
+    
 }
 
 

@@ -11,12 +11,11 @@ export const fetchUsers = async (token, page = 0, limit =10,searchedText = '') =
       },
       params: {
         page ,
-        limit,  // إرسال limit
+        limit ,  
         
-        searched_text: searchedText || '',  // التأكد من إرسال قيمة فارغة إذا لم يكن هناك نص للبحث
+        searched_text: searchedText || '',  
       },
     });
-    console.log(token);
 
     const total = response.data.users.meta.total;
 
@@ -34,7 +33,7 @@ export const fetchUsers = async (token, page = 0, limit =10,searchedText = '') =
 
      return {
       users: formattedData,
-      total: total, // عدد جميع المستخدمين
+      total: total, 
     };
 
   } catch (error) {

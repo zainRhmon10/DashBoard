@@ -9,12 +9,13 @@ import {
   MenuItem,
   IconButton,
 } from "@mui/material";
-import image1 from "../../assets/images/featured-arae-1.2-280x460.jpg.png";
-import image2 from "../../assets/images/featured-arae-2.2-280x460.jpg.png";
+import image1 from "../../../assets/images/featured-arae-1.2-280x460.jpg.png";
+import image2 from "../../../assets/images/featured-arae-2.2-280x460.jpg.png";
 import { useContext, useState } from "react";
 import { Add, RemoveCircleOutline } from "@mui/icons-material";
-import { CreateAttribute } from "../../services/attribute";
-import { AuthContext } from "../../context/AuthContext";
+import { CreateAttribute } from "../services/attribute";
+import { AuthContext } from "../../../context/AuthContext";
+import background3 from '../../../assets/images/ChatGPT Image 29 يونيو 2025، 02_00_04 م.png'
 
 const AddAttribute = () => {
   const { token } = useContext(AuthContext);
@@ -78,7 +79,6 @@ const AddAttribute = () => {
     form.append("name[ar]", formData.nameAR);
     form.append("type", formData.type);
 
-    // إضافة الخيارات إذا وُجدت
     formData.options.forEach((option, index) => {
       form.append(`options[${index}][en]`, option.en);
       form.append(`options[${index}][ar]`, option.ar);
@@ -86,15 +86,56 @@ const AddAttribute = () => {
 
     try {
       await CreateAttribute(token, form);
-      window.location.reload(); // أو قم بتحديث الحالة بدلاً من ذلك
+      window.location.reload(); 
     } catch (error) {
       console.error("Failed to update attribute:", error);
     }
   };
 
   return (
-    <Box sx={{ p: 4 }}>
-      <Grid container spacing={15} alignItems="center">
+
+     <Box
+      display={"flex"}
+      sx={{
+        position: "relative",
+        width: "100%",
+        height: "100%",
+        overflow: "hidden",
+      }}
+    >
+
+        <Box>
+
+        </Box>
+      <Box
+        display={"flex"}
+        component="img"
+        src={background3}
+        position={"absolute"}
+        alt="background1"
+        sx={{
+          
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          zIndex: 0,
+        }}
+      />
+      
+      
+      <Box
+        display={"flex"}
+        sx={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          backgroundColor: "rgba(17, 17, 17, 0.15)",
+          zIndex: 1,
+        }}
+      />
+
+       <Box sx={{ p: 4 , zIndex:2}}>
+      <Grid container spacing={15} alignItems="center" wrap="nowrap">
         {/* الفورم على اليسار */}
         <Grid item xs={12} md={6} sx={{ mt: "100px", ml: "80px" }}>
           <Typography
@@ -116,7 +157,10 @@ const AddAttribute = () => {
             preferences.s
           </Typography>
 
-          <Box display={"flex"} flexDirection={"column"}>
+          <Box display={"flex"} flexDirection={"column"} sx={{
+    width: "100%",
+    maxWidth: "500px",
+  }}>
             <TextField
               margin="normal"
               name="type"
@@ -229,7 +273,7 @@ const AddAttribute = () => {
               src={image1}
               alt="Attribute Visual"
               style={{
-                width: "40%",
+                width: "37%",
                 maxWidth: "500px",
                 borderRadius: "12px",
                 marginTop: "50px",
@@ -240,7 +284,7 @@ const AddAttribute = () => {
               src={image2}
               alt="Attribute Visual"
               style={{
-                width: "40%",
+                width: "37%",
                 maxWidth: "500px",
                 borderRadius: "12px",
                 marginTop: "200px",
@@ -250,6 +294,10 @@ const AddAttribute = () => {
         </Grid>
       </Grid>
     </Box>
+    </Box>
+
+
+   
   );
 };
 
